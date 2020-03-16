@@ -4,8 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .wrap{
+            width: 960px;
+            /* height: 100%; */
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .item{
+            width: 100%;
+            height: 600px;
+            display: flex;
+            position: relative;
+            padding: 200px;
+        }
+        /* .item>.data:nth-child(even) img{
+            position: absolute;
+           margin-right: -150px;
+       } */
+        .youtube { 
+            position: absolute;
+            top: 40%;
+            right: 90px;
+        }
+        .wrap>.item:nth-child(even) .youtube{
+            left: 90px;
+        }
+        .red-car {
+            position: absolute;
+            right: 10%;
+        }
+        .wrap>.item:nth-child(even) .red-car{
+            left: 10%;
+        }
+        .data{
+            position: absolute;
+            top: 63px;
+            left: 10px;
+            z-index: 1;
+        }
+        .wrap>.item:nth-child(even) .data{
+            left: 700px;
+        }
+        .detail{
+            position: absolute;
+            top: 60%;
+            left: 55px;
+        }
+        .wrap>.item:nth-child(even) .detail{
+            left: 350px;
+        }
+        .back{
+            position: absolute;
+            top: 100px;
+            right: 50px;
+        }
+        .back img{
+            width: 450px;
+            height: 280px;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="wrap">
+        <div class="item">           
+            <div class="data"><img src="pin/asset 59.png" alt="01"></div>
+            <div class="back"><img src="pin/asset 41.png" alt="background"></div>
+            <div class="red-car"><img src="pin/asset 57.png" alt="red-car"></div>
+            <div class="detail"><img src="pin/asset 60.png" alt="datail01"></div>
+            <div class="youtube"><img src="pin/asset 58.png" alt="video"></div>
+        </div>
+        <div class="item">
+            <div class="data"><img src="pin/asset 62.png" alt="02"></div>
+            <div class="back"><img src="pin/asset 41.png" alt="background"></div>
+            <div class="red-car"><img src="pin/asset 61.png" alt="red-car"></div>
+            <div class="detail"><img src="pin/asset 63.png" alt="datail02"></div>            
+            <div class="youtube"><img src="pin/asset 58.png" alt="video"></div>
+        </div>
+        <div class="item">
+            <div class="data"><img src="pin/asset 65.png" alt="03"></div>
+            <div class="back"><img src="pin/asset 41.png" alt="background"></div>
+            <div class="red-car"><img src="pin/asset 64.png" alt="red-car"></div>
+            <div class="detail"><img src="pin/asset 66.png" alt="datail03"></div>
+            <div class="youtube"><img src="pin/asset 58.png" alt="video"></div>           
+        </div>
+        <div class="item">
+            <div class="data"><img src="pin/asset 68.png" alt="04"></div>
+            <div class="back"><img src="pin/asset 41.png" alt="background"></div>
+            <div class="red-car"><img src="pin/asset 67.png" alt="red-car"></div>
+            <div class="detail"><img src="pin/asset 69.png" alt="datail04"></div>
+            <div class="youtube"><img src="pin/asset 58.png" alt="video"></div>
+        </div>
+        <div class="item">
+            <div class="data"><img src="pin/asset 71.png" alt="05"></div>
+            <div class="back"><img src="pin/asset 41.png" alt="background"></div>
+            <div class="red-car"><img src="pin/asset 70.png" alt="red-car"></div>
+            <div class="detail"><img src="pin/asset 72.png" alt="datail05"></div>
+            <div class="youtube"><img src="pin/asset 58.png" alt="video"></div>
+
+        </div>
+    </div>
 </body>
 </html>
