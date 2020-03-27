@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .kardone{
+            padding: 100px;
+            display: flex;
+            justify-content: center;
+            justify-content: space-around;
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            z-index: 3;
+        }
+        .title{
+            font-size: 25px;
+            left: 0;
+        }
+        .kardone .part{
+            display: flex;
+            right: 0;
+            padding: 0 100px;
+            align-items: center;
+        }
+        .item{
+            padding-right: 0;
+            font-weight: bold;
+        }
+        .part p{
+            margin: 10px;
+        }
+        .berry{
+            display: flex;
+        }
+        .berry-right{
+            padding: 100px 30px;
+        }
+        .h1{
+            font-size: 100px;
+        }
+        .h2{
+            font-weight: bold;
+            font-size: 75px;
+            color: #ffe605;
+        }
+        .read-more{
+            width: 195px;
+            height: 60px;
+            border-radius: 5px;
+            background-color: #000;
+            color: #fff;
+            font-size: 20px;
+            text-align: center;
+            display: block;
+            line-height: 60px;
+            font-weight: bold;
+        }
+        .read-more:hover{
+            background-color: #ffe605;
+            color: #000;
+            cursor: pointer;
+        }
+        .foods{
+            position: relative;
+        }
+        .food img{
+            width: 100%;
+            height: 20%;
+        }
+        .food{
+            height: 300px;
+            border: 1px solid #fff;
+        }
+        .food:hover{
+            color: #ffe605;
+            border: 1px solid #aaa;
+        }
+        .fruit-item{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        .word{
+            width: 100%;
+            margin-top: -100px;
+            justify-content: space-around;
+            text-align: center;
+            font-weight: bold;
+            font-size: 30px;      
+        }
+        .vege{
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .left-pic{
+            top: 15px;
+            padding-right: 30px;
+        }
+        .red{
+            padding-bottom: 30px;
+        }
+        .title1{
+            color: #fff;
+            font-size: 36px;
+            padding-bottom: 15px;
+        }
+        .shop-now{
+            color: #fff;
+            font-size: 20px;
+            text-decoration: underline;
+        }
+        .shop-now:hover{
+            color: black;
+            cursor: pointer;
+        }
+        .left-pic .content{
+            position: absolute;
+            bottom: 150px;
+            left: 300px;
+        }
+        .red .content{
+            position: absolute;
+            top: 150px;
+            right: 475px;
+        }
+        .orange .content{
+            position: absolute;
+            bottom: 150px;
+            right: 570px;
+        }
+        .title2{
+            font-size: 15px;
+        }
+        .featured{
+            font-size: 24px;
+            padding: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .name:hover{
+            color: #ffe605;
+        }
+        .count{
+            font-size: 21px;
+        }
+        .sale{
+            text-decoration: line-through;
+            color: #888;
+        }
+        .all-products{
+            display: flex;
+            justify-content: space-around;
+            justify-content: center;
+        }
+        .product img{
+            background-color: #eee;
+            width: 275px;
+        }
+        .product{
+            margin: 15px;
+        }
+        .btn{
+            text-align: center;
+            border: 1px solid #000;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 5px;
+        }
+        .all-btn{
+            margin: 10px 0;
+        }
+        .sale-title{
+            position: relative;
+            text-align: center;
+        }
+        .white-pic{
+            font-size: 70px;
+            width: 500px;
+            top: 0;;
+            background-color: #fff;
+            padding: 5%;
+            position: relative;
+            border: 1px solid #000;
+            z-index: 3;
+            margin: 10px;
+        }
+        .white-pic h3{
+            font-weight: 500px;
+        }
+        .white-pic h3{
+            font-weight: 100px;
+        }
+        .shop-btn{
+            padding: 10px;
+            background-color: yellow;
+            font-size: 25px;
+            width: 50%;
+            
+            margin: auto;
+        }
+        .berry-pic{
+            position: absolute;
+            margin-left: 25%;
+            top: 5%;
+        }
+    </style>
+</head>
+<body>
+    <div class="kardone">
+        <div class="title">
+            <img src="pin1-2/asset 1.webp" alt="kardone">
+            <P>HEALTLY FOOD</P>
+        </div>
+        <div class="part">
+            <p class="item">HOME</p>
+            <p class="item">ABOUTS US</p>
+            <p class="item">COLLECTIONS</p>
+            <p class="item">BLOG</p>
+            <p class="item">SALE</p>
+            <p class="item">CONTACT US</p>
+        </div>
+    </div>
+    <div class="berry">
+        <img src="pin1-2/asset 13.png" alt="berry">
+        <div class="berry-right">
+            <div class="h1">
+                <p>Fresh and</p>
+                <p>Delicious</p>
+            </div>
+            <div class="h2">
+                <p>ALL YEAR</p>
+                <p>ROUND</p>
+            </div>
+            <div class="read-more">READ MORE</div>
+        </div>
+    </div>
+
+    <div class="foods">
+        <div class="fruit-item">
+            <div class="food">
+                <div class="pic"><img src="pin1-2/asset 51.png" alt="Fresh Fruits"></div>
+                <p class="word">Fresh Fruits</p>             
+            </div>
+            <div class="food">
+                <div class="pic"><img src="pin1-2/asset 52.png" alt="Veggies"></div>
+                <p class="word">Veggies</p>
+            </div>
+            <div class="food">
+                <div class="pic"><img src="pin1-2/asset 53.png" alt="Fish"></div>
+                <p class="word">Fish</p>
+            </div>
+            <div class="food">
+                <div class="pic"><img src="pin1-2/asset 54.png" alt="Nuts & Seeds"></div>
+                <p class="word">Nuts & Seeds</p>
+            </div>
+            <div class="food">
+                <div class="pic"><img src="pin1-2/asset 55.png" alt="Bread"></div>
+                <p class="word">Bread</p>
+            </div>
+            <div class="food">
+                <div class="pic"><img src="pin1-2/asset 56.png" alt="Dairy"></div>
+                <p class="word">Dairy</p>
+            </div>                
+        </div>
+    </div>
+    <div class="vege">
+        <div class="left-pic">
+            <img src="pin1-2/asset 57.png" alt="">
+            <div class="content">
+                <p class="title1">Best Quality Products</p>
+                <p class="shop-now">Shop now</p>
+            </div>
+        </div>
+        <div class="right-pic">
+            <div class="red">
+                <img src="pin1-2/asset 58.png" alt="">
+                <div class="content">
+                    <p class="title1">Hot Deals:</p>
+                    <p class="title1">CRAZY PRICE $2.99</p>
+                    <p class="shop-now">Shop now</p>
+                </div>
+            </div>
+            <div class="orange">
+                <img src="pin1-2/asset 59.png" alt="">
+                <div class="content">
+                    <p class="title1">HURRY UP!</p>
+                    <p class="title2" style="color: #fff;">Don't miss your chance to be the first!</p>
+                    <p class="shop-now">Shop now</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="Products">
+        <div class="featured-title">
+            <p class="featured">Featured Products</p>
+        </div>
+        <div class="all-products">
+            <div class="product">
+                <img src="pin1-2/asset 9.png" alt="">
+                <p class="name">P28 Foods Formulated...</p>
+                <div class="count">
+                    <span class="sale">$26.00</span><span>$20.00</span>
+                </div>
+                <div class="all-btn">
+                    <span class="btn">🛒ADD TO CART</span>
+                    <span class="btn">👁‍🗨</span>
+                    <span class="btn">❤</span>
+                </div>
+            </div>
+            <div class="product">
+                <img src="pin1-2/asset 10.png" alt="">
+                <p class="name">P28 Foods Formulated...</p>
+                <div class="count">
+                    <span class="sale">$26.00</span><span>$20.00</span>
+                </div>
+                <div class="all-btn">
+                    <span class="btn">🛒ADD TO CART</span>
+                    <span class="btn">👁‍🗨</span>
+                    <span class="btn">❤</span>
+                </div>
+            </div>
+            <div class="product">
+                <img src="pin1-2/asset 11.png" alt="">
+                <div class="product-content">
+                    <p class="name">P28 Foods Formulated...</p>
+                    <div class="count">
+                        <span class="sale">$26.00</span><span>$20.00</span>
+                    </div>
+                    <div class="all-btn">
+                        <span class="btn">🛒ADD TO CART</span>
+                        <span class="btn">👁‍🗨</span>
+                        <span class="btn">❤</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product">
+                <img src="pin1-2/asset 12.png" alt="">
+                <p class="name">P28 Foods Formulated...</p>
+                <div class="count">
+                    <span class="sale">$26.00</span><span>$20.00</span>
+                </div>
+                <div class="all-btn">
+                    <span class="btn">🛒ADD TO CART</span>
+                    <span class="btn">👁‍🗨</span>
+                    <span class="btn">❤</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sale-title">
+        <div class="white-pic">
+            <h3>20% OFF</h3>
+            <h4>Fresh Berries</h4>
+            <div class="shop-btn">SHOP NOW</div>
+        </div>
+        <div class="berry-pic">
+            <img src="pin1-2/asset 40.png" alt="">
+        </div>
+    </div>
+</body>
+</html>
