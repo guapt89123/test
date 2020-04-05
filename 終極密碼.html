@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .wrap {
+            width: 960px;
+            margin: auto;
+        }
+
+        .num {
+            border: 1px solid #000;
+            text-align: center;
+            padding-top: 10%;
+            padding-bottom: 10%;
+        }
+
+        .all {
+            margin-top: 80px;
+        }
+
+        #GuessNum {
+            margin-top: 10px;
+        }
+
+        .btn-produce button {
+            width: 100px;
+            height: 30px;
+            background-color: blue;
+            color: #fff;
+            margin-left: 48%;
+        }
+
+        .btn-nums div {
+            display: flex;
+            margin-top: 10px;
+            margin-left: 45%;
+        }
+
+        .btn {
+            width: 50px;
+            height: 50px;
+            background-color: #000;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="num">
+            <label for="num" id="NewRange">0 ~ 100</label>
+        </div>
+        <div class="all">
+            <div class="btn-produce">
+                <button onclick="rand()">產生數字</button>
+            </div>
+
+            <form class="btn-nums">
+                <div>
+                    <input type="text" name="GuessNum" id="GuessNum">
+                </div>
+                <div>
+                    <input type="button" onclick="GetNum('1')" class="btn" name="btn" value="1">
+                    <input type="button" onclick="GetNum('2')" class="btn" name="btn" value="2">
+                    <input type="button" onclick="GetNum('3')" class="btn" name="btn" value="3">
+                </div>
+                <div>
+                    <input type="button" onclick="GetNum('4')" class="btn" name="btn" value="4">
+                    <input type="button" onclick="GetNum('5')" class="btn" name="btn" value="5">
+                    <input type="button" onclick="GetNum('6')" class="btn" name="btn" value="6">
+                </div>
+                <div>
+                    <input type="button" onclick="GetNum('7')" class="btn" name="btn" value="7">
+                    <input type="button" onclick="GetNum('8')" class="btn" name="btn" value="8">
+                    <input type="button" onclick="GetNum('9')" class="btn" name="btn" value="9">
+                </div>
+                <div>
+                    <input type="reset" onclick="Clear()" class="btn" name="btn" value="X">
+                    <input type="button" onclick="GetNum('0')" class="btn" name="btn" value="0">
+                    <input type="button" onclick="Enter()" class="btn" name="btn" value="V">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        var GuessNum = document.getElementById('GuessNum');
+        var random;
+        var min = 0;
+        var max = 100;
+        function rand(x) {
+            random = Math.floor(Math.random() * 100);
+            // alert(random);
+        }
+        function Enter() {
+            var NewNum = parseInt(document.getElementById('GuessNum').value);            
+            if (NewNum > max || NewNum < min){
+                alert('請輸入範圍值');
+            }
+            else if (NewNum > random) {
+                max = NewNum;
+                document.getElementById('NewRange').innerHTML = min + '~' + max;
+            }
+            else if (NewNum < random) {
+                min = NewNum;
+                document.getElementById('NewRange').innerHTML = min + '~' + max;
+            }
+            else if (NewNum == random) {
+                alert('You Win');
+            }
+        }
+        function GetNum(y) {
+            document.getElementById('GuessNum').value += y;
+        }
+
+
+    </script>
+</body>
+
+</html>

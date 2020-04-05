@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>FakeApple</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div id="pic">
+                    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone11-select-2019-family?wid=882&amp;hei=1058&amp;fmt=jpeg&amp;qlt=80&amp;op_usm=0.5,0.5&amp;.v=1567022175704"
+                        alt="main-iphone" class="w-100">
+                </div>
+            </div>
+            <div class="col-6">
+                    <h1>顏色</h1>
+                    <div id="color" class="d-flex">
+                        <button onclick="color1()">紅色</button>
+                        <button onclick="color2()">黃色</button>
+                        <button onclick="color3()">黑色</button>
+                    </div>
+
+                    <h1>規格</h1>
+                    <div id="format" class="d-flex">
+                        <button onclick="ggg()">64G</button>
+                        <button onclick="type2()">128G</button>
+                        <button onclick="type3()">256G</button>
+                    </div>
+
+
+                    <h1>價錢</h1>
+                    <div id="price"></div>
+
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+    <script>
+        var products = {
+            iphone: {
+                style: {
+                    red: { color: '紅', imgURL: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone11-red-select-2019?wid=470&hei=556&fmt=png-alpha&.v=1566956144763' },
+                    yellow: { color: '黃', imgURL: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone11-yellow-select-2019?wid=470&hei=556&fmt=png-alpha&.v=1568141245782' },
+                    black: { color: '黑', imgURL: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone11-black-select-2019?wid=470&hei=556&fmt=png-alpha&.v=1566956144418' }
+                },
+                spec: {
+                    G64: { storage: '64G', price: 'NT$25,000' },
+                    G128: { storage: '128G', price: 'NT$27,000' },
+                    G256: { storage: '256G', price: 'NT$28,000' }
+                }
+
+            },
+            ipad: {},
+            mac: {},
+            watch: {}
+        };
+        var pic = document.getElementById('pic');
+        var price = document.getElementById('price');
+        function color1() {
+            pic.innerHTML = `<img src="${products.iphone.style.red.imgURL}" alt=""> `;
+        }
+        function color2() {
+            pic.innerHTML = `<img src="${products.iphone.style.yellow.imgURL}" alt=""> `;
+        }
+        function color3() {
+            pic.innerHTML = `<img src="${products.iphone.style.black.imgURL}" alt=""> `;
+        }
+        function ggg() {
+            price.innerHTML = `<h3>${products.iphone.spec.G64.price}</h3>`;
+        }
+        function type2() {
+            price.innerHTML = `<h3>${products.iphone.spec.G128.price}</h3>`;
+        }
+        function type3() {
+            price.innerHTML = `<h3>${products.iphone.spec.G256.price}</h3>`;
+        }
+
+
+
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

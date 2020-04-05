@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .btn-nums {
+            width: 100%;
+            margin-left: 45%;
+            font-size: 30px;
+        }
+
+        .text input {
+            width: 250px;
+            height: 30px;
+        }
+
+        .clear input {
+            width: 245px;
+            height: 30px;
+            margin-left: 4px;
+        }
+
+        .count input {
+            width: 50px;
+            height: 50px;
+            margin: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="btn-nums">
+        <div class="text">
+            <input type="text" name="Num" id="Num">
+        </div>
+        <div class="clear">
+            <input type="button" onclick="BackSpace()" class="btn" name="btn" value="AC">
+        </div>
+        <div class="count">
+            <input type="button" onclick="GetNum('1')" class="btn" name="btn" value="1">
+            <input type="button" onclick="GetNum('2')" class="btn" name="btn" value="2">
+            <input type="button" onclick="GetNum('3')" class="btn" name="btn" value="3">
+            <input type="button" onclick="GetNum('+')" class="btn" name="btn" value="+">
+        </div>
+        <div class="count">
+            <input type="button" onclick="GetNum('4')" class="btn" name="btn" value="4">
+            <input type="button" onclick="GetNum('5')" class="btn" name="btn" value="5">
+            <input type="button" onclick="GetNum('6')" class="btn" name="btn" value="6">
+            <input type="button" onclick="GetNum('-')" class="btn" name="btn" value="-">
+        </div>
+        <div class="count">
+            <input type="button" onclick="GetNum('7')" class="btn" name="btn" value="7">
+            <input type="button" onclick="GetNum('8')" class="btn" name="btn" value="8">
+            <input type="button" onclick="GetNum('9')" class="btn" name="btn" value="9">
+            <input type="button" onclick="GetNum('*')" class="btn" name="btn" value="x">
+        </div>
+        <div class="count">
+            <input type="button" onclick="GetNum('.')" class="btn" name="btn" value=".">
+            <input type="button" onclick="GetNum('0')" class="btn" name="btn" value="0">
+            <input type="button" onclick="equal()" class="btn" name="btn" value="=">
+            <input type="button" onclick="GetNum('/')" class="btn" name="btn" value="÷">
+        </div>
+    </form>
+    <script>
+        var input = document.getElementById('Num');
+        function GetNum(x) {
+            document.getElementById('Num').value += x;
+        }
+        function equal() {
+            var Nums = document.getElementById('Num').value;
+            var count = eval(Nums);
+            var equal = document.getElementById('Num');
+            equal.value = count;
+        }
+        function BackSpace() {
+            var Nums = document.getElementById('Num');
+            var x = Nums.value;
+            Nums.value = x.substring(0, x.length - 1);
+            // var NumsSplit = input.split('');
+            // alert(NumsSplit);
+            // Nums = NumsSplit.length-1;
+        }
+    </script>
+</body>
+
+</html>
