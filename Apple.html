@@ -23,23 +23,21 @@
                 </div>
             </div>
             <div class="col-6">
-                    <h1>顏色</h1>
-                    <div id="color" class="d-flex">
-                        <button onclick="color1()">紅色</button>
-                        <button onclick="color2()">黃色</button>
-                        <button onclick="color3()">黑色</button>
-                    </div>
+                <h1>顏色</h1>
+                <div id="color" class="d-flex">
+                    <button onclick="color1()">紅色</button>
+                    <button onclick="color2()">黃色</button>
+                    <button onclick="color3()">黑色</button>
+                </div>
 
-                    <h1>規格</h1>
-                    <div id="format" class="d-flex">
-                        <button onclick="type1()">64G</button>
-                        <button onclick="type2()">128G</button>
-                        <button onclick="type3()">256G</button>
-                    </div>
-
-
-                    <h1>價錢</h1>
-                    <div id="price"></div>
+                <h1>規格</h1>
+                <div id="format" class="d-flex">
+                    <button onclick="type1()">64G</button>
+                    <button onclick="type2()">128G</button>
+                    <button onclick="type3()">256G</button>
+                </div>
+                <h1>價錢</h1>
+                <div id="price"></div>
 
             </div>
         </div>
@@ -60,7 +58,6 @@
                     G128: { storage: '128G', price: 'NT$27,000' },
                     G256: { storage: '256G', price: 'NT$28,000' }
                 }
-
             },
             ipad: {},
             mac: {},
@@ -86,9 +83,6 @@
         function type3() {
             price.innerHTML = `<h3>${products.iphone.spec.G256.price}</h3>`;
         }
-
-
-
     </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
