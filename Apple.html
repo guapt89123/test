@@ -16,29 +16,26 @@
 <body>
     <div class="container">
         <div class="row">
+            <div class="col-12 justify-content-center">
+                <button onclick="iphone()">iPhone</button>
+                <button onclick="ipad()">iPad</button>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-6">
                 <div id="pic">
-                    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone11-select-2019-family?wid=882&amp;hei=1058&amp;fmt=jpeg&amp;qlt=80&amp;op_usm=0.5,0.5&amp;.v=1567022175704"
-                        alt="main-iphone" class="w-100">
+                    <img id="img" src="" alt="" class="w-100">
                 </div>
             </div>
             <div class="col-6">
-                <h1>顏色</h1>
-                <div id="color" class="d-flex">
-                    <button onclick="color1()">紅色</button>
-                    <button onclick="color2()">黃色</button>
-                    <button onclick="color3()">黑色</button>
-                </div>
+                <h1 id="ColorArea"></h1>
+                <div id="color" class="d-flex"></div>
 
-                <h1>規格</h1>
-                <div id="format" class="d-flex">
-                    <button onclick="type1()">64G</button>
-                    <button onclick="type2()">128G</button>
-                    <button onclick="type3()">256G</button>
-                </div>
-                <h1>價錢</h1>
+                <h1 id="TypeArea"></h1>
+                <div id="type" class="d-flex"></div>
+
+                <h1 id="PriceArea"></h1>
                 <div id="price"></div>
-
             </div>
         </div>
     </div>
@@ -48,41 +45,118 @@
     <script>
         var products = {
             iphone: {
+                default: { imgURL: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone11-select-2019-family?wid=882&amp;hei=1058&amp;fmt=jpeg&amp;qlt=80&amp;op_usm=0.5,0.5&amp;.v=1567022175704' },
                 style: {
-                    red: { color: '紅', imgURL: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone11-red-select-2019?wid=470&hei=556&fmt=png-alpha&.v=1566956144763' },
-                    yellow: { color: '黃', imgURL: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone11-yellow-select-2019?wid=470&hei=556&fmt=png-alpha&.v=1568141245782' },
-                    black: { color: '黑', imgURL: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone11-black-select-2019?wid=470&hei=556&fmt=png-alpha&.v=1566956144418' }
+                    color1: { color: '紅色', imgURL: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone11-red-select-2019?wid=470&hei=556&fmt=png-alpha&.v=1566956144763' },
+                    color2: { color: '黃色', imgURL: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone11-yellow-select-2019?wid=470&hei=556&fmt=png-alpha&.v=1568141245782' },
+                    color3: { color: '黑色', imgURL: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone11-black-select-2019?wid=470&hei=556&fmt=png-alpha&.v=1566956144418' }
                 },
                 spec: {
-                    G64: { storage: '64G', price: 'NT$25,000' },
-                    G128: { storage: '128G', price: 'NT$27,000' },
-                    G256: { storage: '256G', price: 'NT$28,000' }
+                    type1: { storage: '64G', price: 'NT$25,000' },
+                    type2: { storage: '128G', price: 'NT$27,000' },
+                    type3: { storage: '256G', price: 'NT$28,000' }
                 }
             },
-            ipad: {},
-            mac: {},
-            watch: {}
+            ipad: {
+                default: { imgURL: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-hero-unselected-201909_GEO_TW?wid=744&amp;hei=1212&amp;fmt=jpeg&amp;qlt=80&amp;op_usm=0.5,0.5&amp;.v=1567298453562' },
+                style: {
+                    pacolor1: { color: '太空灰色', imgURL: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-wifi-select-space-201909_GEO_TW?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1567443080749' },
+                    pacolor2: { color: '銀色', imgURL: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-wifi-select-silver-201909_GEO_TW?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1567299773948' },
+                    pacolor3: { color: '金色', imgURL: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-wifi-select-gold-201909_GEO_TW?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1567302181892' }
+                },
+                spec: {
+                    patype1: { storage: '32G', price: 'NT$10,900' },
+                    patype2: { storage: '128G', price: 'NT$13,900' }
+                }
+            }
         };
         var pic = document.getElementById('pic');
+        var img = document.getElementById('img');
+        var ColorArea = document.getElementById('ColorArea');
+        var TypeArea = document.getElementById('TypeArea');
+        var PriceArea = document.getElementById('PriceArea');
+        var color = document.getElementById('color');
+        var type = document.getElementById('type');
         var price = document.getElementById('price');
+        function ColorBtn() {
+            ColorArea.innerHTML = "顏色";
+        }
+        function TypeBtn() {
+            TypeArea.innerHTML = "規格";
+        }
+        function PriceBtn() {
+            PriceArea.innerHTML = "價錢";
+        }
+        function iphone() {
+            pic.innerHTML= `<img src="${products.iphone.default.imgURL}" alt="" class = "w-100"> `;;
+            var x = [`<button onclick="color1()">${products.iphone.style.color1.color}</button>`, `<button onclick="color2()">${products.iphone.style.color2.color}</button>`, `<button onclick="color3()">${products.iphone.style.color3.color}</button>`];
+            var y = [`<button onclick="type1()">${products.iphone.spec.type1.storage}</button>`, `<button onclick="type2()">${products.iphone.spec.type2.storage}</button>`, `<button onclick="type3()">${products.iphone.spec.type3.storage}</button>`];
+            color.innerHTML = '';
+            type.innerHTML = '';
+            price.innerHTML = '';
+            for (var i = 0; i < x.length; i++) {
+                color.innerHTML += x[i];
+            }
+            for (var j = 0; j < y.length; j++) {
+                type.innerHTML += y[j];
+            }           
+            ColorBtn();
+            TypeBtn();
+            PriceBtn();
+        }
         function color1() {
-            pic.innerHTML = `<img src="${products.iphone.style.red.imgURL}" alt=""> `;
+            pic.innerHTML = `<img src="${products.iphone.style.color1.imgURL}" alt=""> `;
         }
         function color2() {
-            pic.innerHTML = `<img src="${products.iphone.style.yellow.imgURL}" alt=""> `;
+            pic.innerHTML = `<img src="${products.iphone.style.color2.imgURL}" alt=""> `;
         }
         function color3() {
-            pic.innerHTML = `<img src="${products.iphone.style.black.imgURL}" alt=""> `;
+            pic.innerHTML = `<img src="${products.iphone.style.color3.imgURL}" alt=""> `;
         }
         function type1() {
-            price.innerHTML = `<h3>${products.iphone.spec.G64.price}</h3>`;
+            price.innerHTML = `<h3>${products.iphone.spec.type1.price}</h3>`;
         }
         function type2() {
-            price.innerHTML = `<h3>${products.iphone.spec.G128.price}</h3>`;
+            price.innerHTML = `<h3>${products.iphone.spec.type2.price}</h3>`;
         }
         function type3() {
-            price.innerHTML = `<h3>${products.iphone.spec.G256.price}</h3>`;
+            price.innerHTML = `<h3>${products.iphone.spec.type3.price}</h3>`;
         }
+
+        function ipad() {
+            pic.innerHTML= `<img src="${products.ipad.default.imgURL}" alt="" class = "w-100"> `;;
+            var x = [`<button onclick="pacolor1()">${products.ipad.style.pacolor1.color}</button>`, `<button onclick="pacolor2()">${products.ipad.style.pacolor2.color}</button>`, `<button onclick="pacolor3()">${products.ipad.style.pacolor3.color}</button>`];
+            var y = [`<button onclick="patype1()">${products.ipad.spec.patype1.storage}</button>`, `<button onclick="patype2()">${products.ipad.spec.patype2.storage}</button>`];
+            color.innerHTML = '';
+            type.innerHTML = '';
+            price.innerHTML = '';
+            for (var i = 0; i < x.length; i++) {
+                color.innerHTML += x[i];
+            }
+            for (var j = 0; j < y.length; j++) {
+                type.innerHTML += y[j];
+            }           
+            ColorBtn();
+            TypeBtn();
+            PriceBtn();
+        }
+        function pacolor1() {
+            pic.innerHTML = `<img src="${products.ipad.style.pacolor1.imgURL}" alt="" class = "w-100"> `;
+        }
+        function pacolor2() {
+            pic.innerHTML = `<img src="${products.ipad.style.pacolor2.imgURL}" alt="" class = "w-100"> `;
+        }
+        function pacolor3() {
+            pic.innerHTML = `<img src="${products.ipad.style.pacolor3.imgURL}" alt="" class = "w-100"> `;
+        }
+        function patype1() {
+            price.innerHTML = `<h3>${products.ipad.spec.patype1.price}</h3>`;
+        }
+        function patype2() {
+            price.innerHTML = `<h3>${products.ipad.spec.patype2.price}</h3>`;
+        }
+
+
     </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
