@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Mask Map</title>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #map {
+      height: 100%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+  <script>
+    var map;
+    var a = -1;
+    let data = '';
+    var icons = {};
+    function initMap() {
+      var chu = { lat: 23.5793281, lng: 120.0733141 };
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 8,
+        center: chu
+      });
+
+      $.ajax({
+        type: "Get",
+        url: "https://findmasks.herokuapp.com/places",
+        success: function (reponse) {         
+          for (var i = 0; i < reponse.features.length; i++) {
+            var coords = reponse.features[i].geometry.coordinates;
+            var latLng = new google.maps.LatLng(coords[1], coords[0]);
+            var masksLeft = reponse.features[i].properties.masksLeft;
+            var childMasksLeft = reponse.features[i].properties.childMasksLeft;
+            var contentString = reponse.features[i].properties.name;
+            var id = reponse.features[i].properties.id;
+            var infowindow = new google.maps.InfoWindow();
+            if (reponse.features[i].properties.masksLeft + reponse.features[i].properties.childMasksLeft > 0) {
+              var marker = new google.maps.Marker({
+                position: latLng,
+                icon: {
+                  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Yes_Check_Circle.svg/1024px-Yes_Check_Circle.svg.png",
+                  scaledSize: new google.maps.Size(25, 25)
+                },
+                map: map,
+                title: `${contentString} \n 成人口罩 : ${masksLeft} \n 小孩口罩 : ${childMasksLeft}`,
+                data: ` ${contentString} <br> 成人口罩 : ${masksLeft} <br> 小孩口罩 : ${childMasksLeft}`
+              });
+            }
+            else {
+              // var infowindow = new google.maps.InfoWindow({
+              //   content: contentString,
+              // });
+              var marker = new google.maps.Marker({
+                position: latLng,
+                icon: {
+                  url: "https://cdn0.iconfinder.com/data/icons/ecommerce-2-13/65/57-512.png",
+                  scaledSize: new google.maps.Size(25, 25)
+                },
+                map: map,
+                title: ` ${contentString} \n 無口罩`,
+                data: ` ${contentString} <br> 無口罩`
+              });
+            }
+            // debugger;
+            marker.addListener('click', function () {
+              infowindow.setContent(this.data);
+              infowindow.open(map, this);
+            });
+          }
+
+
+          // console.log(reponse);
+        },
+        error: function (reponse) {
+          console.log("Error");
+        }
+      })
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlKWP4uWjQIR3WDAWLAu6rUhBfc3_ppag&callback=initMap"
+    async defer></script>
+</body>
+
+</html>
