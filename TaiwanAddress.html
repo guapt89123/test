@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taiwan Address</title>
+    <script src="MyHelpers.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <template id="templateTitle">
+        <tr>
+            <th>縣市</th>
+            <th>區域</th>
+            <th>區碼</th>
+        </tr>
+    </template>
+    <template id="templateRow">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </template>
+    <script>
+        let body = $g('body');
+        let table = $c('table');
+        table.setAttribute("border", "1");
+        body.appendChild(table);
+        let thead = $c('thead');
+        let tbody = $c('tbody');
+        table.appendChild(thead);
+        table.appendChild(tbody);
+        
+        window.onload = function () {
+            let xhr = new XMLHttpRequest;
+            xhr.onload = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    let File = JSON.parse(this.responseText);
+                    let Taiwan = [];
+                    File.forEach(item1 => {
+                        item1.AreaList.forEach(function (item2) {
+                            Taiwan.push({
+                                City: `${item1.CityName}`,
+                                AreaLists: [{
+                                    AreaName: `${item2.AreaName}`,
+                                    ZipCode: `${item2.ZipCode}`,
+                                }]
+                            })
+                        });
+                    });
+                    addThead();
+                    Taiwan.forEach((item1) => {
+                        addTbody(Object.values(item1));
+                    });
+                }
+                else {
+                    alert(`發生錯誤 ${xhr.status}`);
+                }
+            }
+            xhr.open("GET", "http://127.0.0.1:5500/TaiwanAddress.json");
+            xhr.send();
+        }
+
+        function addThead() {
+            let templateTitle = $g('#templateTitle');
+            let cloneContent = templateTitle.content.cloneNode(true);
+            thead.appendChild(cloneContent);
+        }
+
+        function addTbody(rowArray) {
+            let templateRow = $g('#templateRow');
+            let cloneContent = templateRow.content.cloneNode(true);
+            let tds = cloneContent.querySelectorAll('td');
+            rowArray.forEach(function (item, index) {
+                if (index == 1) {
+                    item.forEach(function (item2) {
+                        tds[1].textContent = item2.AreaName;
+                        tds[2].textContent = item2.ZipCode;
+                    })
+                } 
+                else {
+                    tds[index].textContent = rowArray[index];
+                }
+            })
+            tbody.appendChild(cloneContent);
+        }
+    </script>
+</body>
+
+</html>
