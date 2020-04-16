@@ -12,29 +12,85 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <title>LOL</title>
+  <style>
+    .row h5 {
+      background-color: #000;
+      color: #fff;
+    }
+  </style>
   <script src="MyHelpers.js"></script>
 </head>
 
 <body>
-  <template>
-    
-  </template>
+
+  <h1 class="text-center">CHAMPION</h1>
+  <div class="container text-center">
+    <div class="row">
+
+    </div>
+  </div>
+
+  <!-- Button trigger modal -->
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
+    Launch demo modal
+  </button> -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalScrollableTitle">
+
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <script>
     $.ajax({
       type: "Get",
-      url: "http://127.0.0.1:5500/LOL.json",
-      success: function (reponse) {
-        for (var i = 0; i < reponse.length; i++) {
-          var id = reponse[i].id;
-          var icon = reponse[i].icon;
-          let body = $g('body');
-          body.appe
-          
-        }
-        console.log(reponse);
+      url: "https://raw.githubusercontent.com/ngryman/lol-champions/master/champions.json",
+      success: function (response) {
+        var lol = JSON.parse(response);
+        lol.forEach((item) => {
+          let row = $g('.row');
+          let button = $c('botton');
+          let img = $c('img');
+          img.src = item.icon;
+          let h5 = $c('h5');
+          h5.textContent = item.name;
+          row.appendChild(button);
+          button.appendChild(img);
+          button.appendChild(h5);
+
+          button.onclick = function () {
+            let ModalBody = $g('.modal-body');
+            ModalBody.innerHTML = null;
+            $('#exampleModalScrollable').modal('toggle');
+            let ModalTitle = $g('.modal-title');
+            ModalTitle.innerHTML = item.name;
+            let p = $c('p');
+            for (let i = 0; i < Object.keys(item.stats).length; i++) {
+              p.innerHTML += `${Object.keys(item.stats)[i]}: ${Object.values(item.stats)[i]} <br>`;
+              ModalBody.appendChild(p);
+            }
+          }
+        })
       },
-      error: function (reponse) {
+      error: function (response) {
         console.log("Error");
       }
     })
