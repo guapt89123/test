@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .title{
+            justify-content: center;
+            display: flex;
+        }
+        button{
+            width: 30px;
+            height: 30px;
+            margin: 5px;
+        }
+        h1{
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        table {
+            width: 100%;
+            text-align: center;
+            border: 1px solid #000;
+            border-collapse: collapse;
+            font-size: 30px;
+        }
+        th{
+            height: 50px;
+            background-color: #555;
+            color: #fff;   
+        }
+        td {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">
+        <button type="button" class="btn btn-primary" onclick="PreMonth()"><</button>
+    <h1 id="Year-Month"></h1>
+    <button type="button" class="btn btn-primary" onclick="NextMonth()">></button>
+    </div>
+    
+
+    <table class="table">
+        <thead>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thur</th>
+            <th>Fri</th>
+            <th>Sat</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+
+
+
+    <script>
+        var NowDate = new Date();
+        var year = NowDate.getFullYear();
+        var month = NowDate.getMonth();
+        var date = NowDate.getDate();
+
+        alldate();
+        function alldate() {
+            var tbody = document.getElementsByTagName('tbody')[0];
+            tbody.innerHTML = '';
+            document.getElementById('Year-Month').innerText = `${new Date(year, month, 1).getFullYear()}年 ${new Date(year, month, 1).getMonth() + 1}月`;
+            var FirstDay = new Date(year, month, 1).getDay();
+            var MonthDay = new Date(year, month + 1, 0).getDate();
+            var day = 1;
+            for (let row = 0; row < 6; row++) {
+                let tr = document.createElement('tr');
+                for (let col = 0; col < 7; col++) {
+                    let td = document.createElement('td');
+                    if (row == 0 && col < FirstDay) {
+
+                    }
+                    else {
+                        if (day <= MonthDay) {
+                            td.innerText = day;
+                        }
+                        day++;
+                    }
+                    tr.appendChild(td);
+                }
+                tbody.appendChild(tr);
+            }
+        }
+        function PreMonth() {
+            month--;
+            alldate();
+        }
+
+        function NextMonth() {
+            month++;
+            alldate();
+        }
+    </script>
+
+</body>
+
+</html>
