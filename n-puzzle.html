@@ -1,222 +1,93 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <title>n-puzzle</title>
-    <style>
-        #puzzle {
-            width: 1024px;
-            height: 575px;
-            display: flex;
-        }
-
-        #puzzle div {
-            width: 256px;
-            height: 143.75px;
-            border: 1px solid #fff;
-            background-image: url("144565057255.jpg");
-            background-repeat: no-repeat;
-            position: absolute;
-        }
-
-        .row1 {
-            top: 0;
-        }
-
-        .row2 {
-            top: 143.75px;
-        }
-
-        .row3 {
-            top: 287.5px;
-        }
-
-        .row4 {
-            top: 431.25px;
-        }
-
-        .col1 {
-            left: 0;
-        }
-
-        .col2 {
-            left: 256px;
-        }
-
-        .col3 {
-            left: 512px;
-        }
-
-        .col4 {
-            left: 768px;
-        }
-
-        #puzzle #empty {
-            border: none;
-            background: none;
-        }
-
-        #pic1 {
-            background-position: 0 0;
-        }
-
-        #pic2 {
-            background-position: -256px 0;
-        }
-
-        #pic3 {
-            background-position: -512px 0;
-        }
-
-        #pic4 {
-            background-position: -768px 0;
-        }
-
-        #pic5 {
-            background-position: 0 -143.75px;
-        }
-
-        #pic6 {
-            background-position: -256px -143.75px;
-        }
-
-        #pic7 {
-            background-position: -512px -143.75px;
-        }
-
-        #pic8 {
-            background-position: -768px -143.75px;
-        }
-
-        #pic9 {
-            background-position: 0 -287.5px;
-        }
-
-        #pic10 {
-            background-position: -256px -287.5px;
-        }
-
-        #pic11 {
-            background-position: -512px -287.5px;
-        }
-
-        #pic12 {
-            background-position: -768px -287.5px;
-        }
-
-        #pic13 {
-            background-position: 0 -431.25px;
-        }
-
-        #pic14 {
-            background-position: -256px -431.25px;
-        }
-
-        #pic15 {
-            background-position: -512px -431.25px;
-        }
-    </style>
-    <script src="./MyHelpers.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jQuery Puzzle</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <style>
+        #dvPuzzle {
+            width: 360px;
+            height: 360px;
+            margin: 20px;
+        }
+
+        .PicCell {
+            width: 118px;
+            height: 118px;
+            border: 1px solid #fff;
+            float: left;
+            overflow: hidden;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            var posConv = {};
+            var a = 3;
+            var b = 9;
+            for (var i = 0; i < b; i++) {
+                $("#dvPuzzle").append("<div class='PicCell' id='Pic" + i + "'><img src='360.jpg' /></div>");
+                var row = parseInt(i / a);
+                var col = i % a;
+                $("#Pic" + i + " img").css("margin-left", col * -120 + 1).css("margin-top", row * -120 + 1);
+                posConv[i] = { row: row, col: col };
+            }
+            $("#Pic8 img").remove();
+            function getNearPos(i) {
+                var pool = [];
+                var row = posConv[i].row, col = posConv[i].col;
+                if (row > 0)
+                    pool.push((row - 1) * a + col);
+                if (row < a)
+                    pool.push((row + 1) * a + col);
+                if (col > 0)
+                    pool.push(i - 1);
+                if (col < a)
+                    pool.push(i + 1);
+                return pool;
+            }
+            $(".PicCell").click(function () {
+                var cells = $("#dvPuzzle div");
+                var i = cells.index(this);
+                var toCheck = getNearPos(i);
+                while (toCheck.length > 0) {
+                    var j = toCheck.pop();
+                    if (cells.eq(j).attr("id") == "Pic8")
+                    {
+                        if (i > j) { var k = j; j = i; i = k; }
+                        var ahead = cells.eq(i);
+                        var behind = cells.eq(j);
+                        var behindPrev = behind.prev();
+                        if (Math.abs(i - j) == 1)
+                            behind.after(ahead);
+                        else
+                        {
+                            ahead.after(behind);
+                            behindPrev.after(ahead);
+                        }
+                        break;
+                    }
+                }
+            });
+            $("input:button").click(function () {
+                for (var i = 0; i < 500; i++) {
+                    var cells = $("#dvPuzzle div");
+                    var toMove = getNearPos(cells.index($("#Pic8")[0]));
+                    cells.eq(toMove[
+                        parseInt(Math.random() * toMove.length)
+                    ]).click();
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
+    <input type="button" value="開始">
+    <div id="dvPuzzle"></div>
 
-
-    <!-- <img src="144565057255.jpg" alt="" srcset=""> -->
-    <div id="puzzle"></div>
-    <button onclick="hard()">困難</button>
-    <select name="" id="">
-        <option value="1">簡單模式</option>
-        <option value="2">中等模式</option>
-        <option value="3">困難模式</option>
-    </select>
-
-    <script>
-        var frag = document.createDocumentFragment();
-        var puzzle = $g('#puzzle');
-        for (var i = 1; i <= 4; i++) {
-            for (var j = 1; j <= 4; j++) {
-                if (i == 4 && j == 4) {
-                    var empty = $c('div');
-                    empty.setAttribute('id', 'empty');
-                    empty.setAttribute('class', 'rowcol4');
-                    frag.appendChild(empty);
-                }
-                else {
-                    var pic = $c('div');
-                    pic.setAttribute('id', 'pic' + ((i - 1) * 4 + j));
-                    pic.setAttribute('class', 'row' + i + ' col' + j);
-                    frag.appendChild(pic);
-                }
-            }
-        }
-        puzzle.appendChild(frag);
-        function start() {
-
-        }
-
-        function set(difficulty) {
-            var arr = [];
-            if (difficulty == 1) {
-                arr = [10, 11, 14];
-            }
-            else if (difficulty == 2) {
-                arr = [5, 6, 7, 9, 10, 11, 13, 14];
-            }
-            else if (difficulty == 3) {
-                arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-            }
-
-            arr.sort(function () {
-                return Math.random() - 0.5;
-            });
-
-            for (i = 0; i < difficulty * 3; i += 3) {
-                var pics = game.pic[arr[i]].className;
-                game.pic[arr[i]].className = game.pic[arr[i + 1]].className;
-                game.pic[arr[i + 1]].className = game.pic[arr[i + 2]].className;
-                game.pic[arr[i + 2]].className = pics;
-            }
-        }
-        game.pic[i].onclick = function () {
-            var clickPic = this.className.match([0 - 9]);
-            var emptyPic = empty.className.match([0 - 9]);
-
-            if (isValid(clickPic, emptyPic)) {
-                var temp = this.className;
-                this.className = empty.className;
-                game.empty.className = temp;
-                ++global.step.innHTML;
-
-                if (isDone()) {
-                    success();
-                }
-            }
-        }
-    </script>
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>
